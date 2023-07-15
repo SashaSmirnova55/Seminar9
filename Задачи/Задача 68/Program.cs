@@ -2,9 +2,19 @@
 //m = 2, n = 3 -> A(m,n) = 9
 //m = 3, n = 2 -> A(m,n) = 29
 
-//Задача 69: Напишите программу, которая на вход принимает два числа A и B, и возводит число А в целую степень B с помощью рекурсии.
-//A = 3; B = 5 -> 243 (3⁵)
-//A = 2; B = 3 -> 8
+
+void Main()
+{
+    int M = ReadInt("Введите начальное число M: ");
+    int N = ReadInt("Введите конечное число N: ");
+    if (M < 0 || N < 0)
+    {
+        System.Console.WriteLine("Вы ввели некорректные числа.");
+        return;
+    }
+    System.Console.WriteLine($"Итог: {FuncAckerman(M, N)}");
+}
+
 
 int ReadInt(string text)
 {
@@ -12,14 +22,16 @@ int ReadInt(string text)
     return Convert.ToInt32(Console.ReadLine());
 }
 
-int Power(int X, int Y)
+
+int FuncAckerman(int M, int N)
 {
-    if (Y == 0) return 1;
-    return X * Power(X, Y - 1);
+    if (M == 0) return N + 1;
+    else if (N == 0) return FuncAckerman(M - 1, 1);
+    else
+    {
+        return FuncAckerman(M - 1, FuncAckerman(M, N - 1));
+    }
 }
 
 
-
-int X = ReadInt("Введите число: ");
-int Y = ReadInt("Введите число: ");
-System.Console.WriteLine($"Число {X} в степени {Y}: {Power(X,Y)}");
+Main();

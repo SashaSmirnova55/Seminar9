@@ -2,23 +2,36 @@
 // M = 1; N = 15 -> 120
 // M = 4; N = 8. -> 30
 
+void Main()
+{
+    int N = ReadInt("Введите начальное число M: ");
+    int M = ReadInt("Введите конечное число N: ");
 
-// Задача 67: Напишите программу, которая будет принимать на вход число и возвращать сумму его цифр.
-// 453 -> 12
-// 45 -> 9
+    if (M < N)
+    {
+        SumNumbers(M, N);
+        System.Console.WriteLine($"Сумма всех натуральных чисел в заданном диапазоне равна: {SumNumbers(M, N)}");
+    }
+    else
+    {
+        SumNumbers(N, M);
+        System.Console.WriteLine($"Сумма всех натуральных чисел в заданном диапазоне равна: {SumNumbers(N, M)}");
+    }
+}
+
+
 int ReadInt(string text)
 {
     System.Console.WriteLine(text);
     return Convert.ToInt32(Console.ReadLine());
 }
 
-int SumNumbers(int X)
+
+int SumNumbers(int M, int N)
 {
-    if (X == 0) return 0;
-    return X % 10 + SumNumbers(X / 10);
+    if (M == N) return M;
+    return N + SumNumbers(M, N - 1);
 }
 
 
-
-int X = ReadInt("Введите число: ");
-System.Console.WriteLine($" Сумма цифр введённого числа равна: {SumNumbers(X)}");
+Main();
